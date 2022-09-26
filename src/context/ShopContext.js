@@ -27,6 +27,12 @@ export function ShopProvider({ children }) {
     setRemoved(data.data);
   };
 
+  // type: add or remove
+  const addToList = async (shopInfo, type) => {
+    const url = `http://3dmapweb3:8088/api/All/${type}`;
+    await axios.post(url, { shopInfo });
+  };
+
   return (
     <ShopContext.Provider
       value={{
@@ -37,6 +43,7 @@ export function ShopProvider({ children }) {
         removed,
         searchRemovedInfo,
         editInfo,
+        addToList,
       }}
     >
       {children}
